@@ -9,9 +9,13 @@ umlr
 
 ## Description 
 
-Provides generic interfaces that can be systematically
-    implemented for all contexts that match a CRUD paradigm (create, read,
-    update, delete).
+Provides helper functions to render UML diagrams.
+
+## Installation
+
+```
+devtools::install_github("umlr")
+```
 
 ## Vignettes
 

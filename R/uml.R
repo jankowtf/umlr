@@ -29,7 +29,7 @@
 # }
 
 #' @export
-plantuml3 <- function(
+renderUml <- function(
   uml,
   text,
   filename = tempfile(),

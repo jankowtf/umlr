@@ -1,24 +1,10 @@
----
-title: "Introduction"
-author: "Janko Thyson"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Introduction}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
----
-
-```{r, include = FALSE}
+## ---- include = FALSE----------------------------------------------------
 run <- FALSE
 root_dir <- paste(rep("../", 1), collapse = "")
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 knitr::opts_knit$set(root.dir = root_dir)
-```
 
-# Test
-
-```{r echo=FALSE}
+## ----echo=FALSE----------------------------------------------------------
 umlr_uml <- '
   @startuml
   ICrud *-- Crud: implements <
@@ -59,7 +45,4 @@ uml_file <- umlr:::renderUml(
 # print(uml_file)
 # print(getwd())
 # knitr::opts_knit$set(root.dir = getwd())
-```
-
-![UML](`r uml_file`)
 
