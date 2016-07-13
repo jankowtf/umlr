@@ -14,7 +14,9 @@ Provides helper functions to render UML diagrams.
 ## Installation
 
 ```
-devtools::install_github("umlr")
+library("devtools")
+devtools::install_github("rappster/umlr")
+library("umlr")
 ```
 
 ## Vignettes
