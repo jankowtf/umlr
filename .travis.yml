@@ -1,0 +1,15 @@
+# Sample .travis.yml for R projects
+
+language: r
+warnings_are_errors: true
+sudo: required
+cran: http://cran.rstudio.com
+r_packages:
+  - covr
+after_success:
+  - Rscript -e 'covr::codecov()'
+
+addons:
+  apt:
+    packages:
+    - qpdf

@@ -1,0 +1,66 @@
+---
+title: "Introduction"
+author: "Janko Thyson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, include = FALSE}
+library(umlr)
+run <- FALSE
+root_dir <- paste(rep("../", 1), collapse = "")
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_knit$set(root.dir = root_dir)
+```
+
+# UML
+
+```{r echo=FALSE}
+umlr_uml <- '
+  @startuml
+  ICrud *-- Crud: implements <
+  Crud <|-- Crud.Settings: extends <
+
+  class ICrud {
+    +init()
+    +has()
+    +create()
+    +read()
+    +update()
+    +delete()
+    +reset()
+    -stopIfInterface()
+  }
+  class Crud {
+    +main: environment
+    -initial_state: list
+    -stopIfEmpty()
+    -createMessage(),
+    -cacheInitialState()
+  }
+  class Crud.Settings {
+    +main: function
+    -cacheInitialState()
+  }
+  @enduml
+'
+# knitr::opts_knit$set(root.dir = root_dir)
+uml_file <- umlr:::plantuml3(
+  umlr_uml, 'Architecture', 
+  filename = "vignettes/uml",
+  jarfile = "lib/plantuml.jar",
+  normalize = TRUE
+)
+# print(uml_file)
+# uml_file <- normalizePath(uml_file)
+# print(uml_file)
+# print(getwd())
+# knitr::opts_knit$set(root.dir = getwd())
+```
+
+![UML](`r uml_file`)
+
