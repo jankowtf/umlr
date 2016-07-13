@@ -1,7 +1,7 @@
 Package: umlr
 Type: Package
 Title: Helper functions to create UML diagrams from R code
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de",
                   role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
@@ -12,3 +12,4 @@ LazyData: true
 RoxygenNote: 5.0.1
 Imports: knitr
 VignetteBuilder: knitr
+Suggests: testthat

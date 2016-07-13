@@ -32,7 +32,7 @@
 # }
 
 #' @export
-renderUml <- function(
+render <- function(
   uml,
   text,
   filename = tempfile(),
@@ -48,5 +48,83 @@ renderUml <- function(
   if (normalize) {
     out <- normalizePath(out)
   }
+
+  # library(png)
+  # library(grid)
+  #   img <- png::readPNG(out)
+  #   grid::grid.raster(img, ...)
+  #
   out
+}
+
+#' @export
+transformCore <- function(classname, where = parent.frame()) {
+  if (exists(classname, envir = where, inherits = FALSE)) {
+    obj <- get(classname, envir = where, inherits = FALSE)
+    attr <- ls(obj)
+
+    value_list <- NULL
+
+    what <- c(
+      "public_fields",
+      "public_methods",
+      "private_fields",
+      "private_methods"
+    )
+    value_list <- unlist(lapply(what, function(ii) {
+      what <- ii
+      if (what %in% attr) {
+        symbol <- if (grepl("public_", what)) {
+          "+"
+        } else if (grepl("private_", what)) {
+          "-"
+        }
+
+        if (grepl("_fields$", what)) {
+          value <- sapply(obj[[what]], class)
+          value <- sprintf("%s%s: %s", symbol, names(value), value)
+        } else if (grepl("_methods$", what)) {
+          value <- sapply(obj[[what]], class)
+          value <- sprintf("%s%s()", symbol, names(value))
+        }
+      }
+    }))
+    c(
+      sprintf("class %s {", classname),
+      paste(value_list, collapse = "\n"),
+      "}"
+    )
+  }
+}
+
+#' @export
+transform <- function(classname, where = parent.frame()) {
+  if (exists(classname, envir = where, inherits = FALSE)) {
+    obj <- get(classname, envir = where, inherits = FALSE)
+    if (inherits(obj, "R6ClassGenerator")) {
+      attr <- ls(obj)
+
+      meta_list <- NULL
+      value_list <- NULL
+
+      what <- "inherit"
+      if (what %in% attr) {
+        super <- as.character(obj[[what]])
+        meta_list <- c(meta_list, sprintf("%s <|-- %s: extends <", super, classname))
+        value <- transformCore(super, where = where)
+      }
+      value_list <- c(value_list, value)
+
+      value <- transformCore(classname, where = where)
+      value_list <- c(value_list, value)
+
+      out <- c(
+        "@startuml",
+        meta_list,
+        value_list,
+        "@enduml"
+      )
+      out
+    }
+  }
 }

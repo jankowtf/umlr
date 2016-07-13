@@ -1,28 +1,16 @@
-
-  @startuml
-  ICrud *-- Crud: implements <
-  Crud <|-- Crud.Settings: extends <
-
-  class ICrud {
-    +init()
-    +has()
-    +create()
-    +read()
-    +update()
-    +delete()
-    +reset()
-    -stopIfInterface()
-  }
-  class Crud {
-    +main: environment
-    -initial_state: list
-    -stopIfEmpty()
-    -createMessage(),
-    -cacheInitialState()
-  }
-  class Crud.Settings {
-    +main: function
-    -cacheInitialState()
-  }
-  @enduml
-
+@startuml
+ClassA <|-- ClassB: extends <
+class ClassA {
++x_1: character
++x_2: logical
++foo()
++clone()
+-.x_1: character
+-.x_2: logical
+-.foo()
+}
+class ClassB {
++x_3: numeric
++clone()
+}
+@enduml

@@ -15,7 +15,7 @@ Details
 
 
  \itemize{
-   \item{\code{\link[umlr]{renderUml}}: }{
+   \item{\code{\link[umlr]{render}}: }{
 
      Renders UML diagrams
    }
