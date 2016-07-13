@@ -1,3 +1,4 @@
+#' @import rmarkdown
 #' @import knitr
 
 # plantuml <- function(uml, text, as_is = TRUE) {
