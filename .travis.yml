@@ -8,6 +8,7 @@ r_packages:
   - covr
 before_install:
   - Rscript -e 'install.packages("knitr")'
+  - Rscript -e 'install.packages("rmarkdown")'
 after_success:
   - Rscript -e 'covr::codecov()'
 addons:
