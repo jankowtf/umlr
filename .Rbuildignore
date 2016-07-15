@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^revdep$
-^lib
 ^inst/examples
 ^tests
 ^packrat/
