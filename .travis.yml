@@ -1,13 +1,12 @@
 # Sample .travis.yml for R projects
 
 language: r
-warnings_are_errors: true
+warnings_are_errors: false
 sudo: required
 cran: http://cran.rstudio.com
 r_packages:
   - covr
   - knitr
-  - R6
 before_install:
   - Rscript -e 'install.packages("rmarkdown")'
 after_success:
