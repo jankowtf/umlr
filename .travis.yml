@@ -6,6 +6,7 @@ sudo: required
 cran: http://cran.rstudio.com
 r_packages:
   - covr
+  - rmarkdown
   - knitr
 after_success:
   - Rscript -e 'covr::codecov()'
