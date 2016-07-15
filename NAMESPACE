@@ -3,5 +3,3 @@
 export(render)
 export(transform)
 export(transformCore)
-import(knitr)
-import(rmarkdown)

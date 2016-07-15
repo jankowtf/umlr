@@ -6,9 +6,8 @@ sudo: required
 cran: http://cran.rstudio.com
 r_packages:
   - covr
-before_install:
-  - Rscript -e 'install.packages("knitr")'
-  - Rscript -e 'install.packages("rmarkdown")'
+  - knitr
+
 after_success:
   - Rscript -e 'covr::codecov()'
 addons:

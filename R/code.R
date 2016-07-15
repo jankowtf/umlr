@@ -1,6 +1,3 @@
-#' @import rmarkdown
-#' @import knitr
-
 # plantuml <- function(uml, text, as_is = TRUE) {
 #   filename <- tempfile()
 #   uml_filename <- paste0(filename, ".uml")
